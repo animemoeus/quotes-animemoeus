@@ -1,5 +1,5 @@
 import Card from "./Card";
 import Navbar from "./Navbar";
-import { Pagination, CharacterPagination } from "./Pagination";
+import { Pagination, AnimePagination, CharacterPagination } from "./Pagination";
 
-export { Card, Navbar, Pagination, CharacterPagination };
+export { Card, Navbar, Pagination, AnimePagination, CharacterPagination };
