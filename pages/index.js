@@ -1,8 +1,9 @@
 import { Navbar } from "../components/molecules";
+import { Layout } from "../components/templates/";
 
 export default function Home() {
   return (
-    <div>
+    <Layout title="Quotes | AnimeMoeUs">
       <Navbar />
 
       <p>
@@ -11,6 +12,6 @@ export default function Home() {
         perspiciatis error itaque vitae adipisci eum consectetur voluptatem
         magnam temporibus nulla. Quaerat!
       </p>
-    </div>
+    </Layout>
   );
 }
