@@ -50,7 +50,7 @@ export default function Home(props) {
 export async function getServerSideProps(props) {
   const page = props.query.page === undefined ? 1 : props.query.page;
 
-  const res = await fetch(`http://api.localhost:8000/quotes/?page=${page}`);
+  const res = await fetch(`https://api.animemoe.us/quotes/?page=${page}`);
 
   const data = await res.json();
 

@@ -52,7 +52,7 @@ export async function getServerSideProps(props) {
   const page = props.query.page === undefined ? 1 : props.query.page;
 
   const res = await fetch(
-    `http://api.localhost:8000/quotes/character/${props.query.character_slug}/?page=${page}`
+    `https://api.animemoe.us/quotes/character/${props.query.character_slug}/?page=${page}`
   );
 
   const data = await res.json();

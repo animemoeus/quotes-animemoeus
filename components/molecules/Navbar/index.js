@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg shadow-sm sticky-top navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          Navbar
-        </a>
+        <Link href="/">
+          <a className="navbar-brand">Anime Quotes</a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,8 +21,13 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                Home
+              <a
+                className="nav-link"
+                href="https://github.com/animemoeus/quotes-animemoeus"
+                target="_blank"
+                rel="norefferer"
+              >
+                Github
               </a>
             </li>
           </ul>
