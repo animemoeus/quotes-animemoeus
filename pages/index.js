@@ -6,15 +6,15 @@ import { Card, Navbar, Pagination } from "../components/molecules";
 import { Layout } from "../components/templates/";
 
 export default function Home(props) {
+  if (props.status !== 200) {
+    return <Error statusCode={props.status} />;
+  }
+
   const [numPages, setNumPages] = useState(
     props.quotes.count % 15 > 0
       ? parseInt(props.quotes.count / 15) + 1
       : parseInt(props.quotes.count / 15)
   );
-
-  if (props.status !== 200) {
-    return <Error statusCode={props.status} />;
-  }
 
   return (
     <Layout title="Quotes | AnimeMoeUs">
