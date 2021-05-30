@@ -2,7 +2,7 @@ import Error from "next/error";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Card, Navbar } from "../components/molecules";
+import { Card, Navbar, Pagination } from "../components/molecules";
 import { Layout } from "../components/templates/";
 
 export default function Home(props) {
@@ -34,49 +34,13 @@ export default function Home(props) {
               />
             );
           })}
-          {/* pagination */}
-          <nav className="mt-3">
-            <ul className="pagination justify-content-center">
-              {props.quotes.previous !== null && (
-                <li className="page-item">
-                  <Link href={`/?page=${parseInt(props.page) - 1}`}>
-                    <a className="page-link" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </Link>
-                </li>
-              )}
-              {props.quotes.previous === null && (
-                <li className="page-item disabled">
-                  <a className="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-              )}
-              <li className="page-item disabled">
-                <p className="page-link">
-                  Page {props.page} of {numPages}
-                </p>
-              </li>
-              {props.quotes.next !== null && (
-                <li className="page-item">
-                  <Link href={`/?page=${parseInt(props.page) + 1}`}>
-                    <a className="page-link" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </Link>
-                </li>
-              )}
-              {props.quotes.next === null && (
-                <li className="page-item disabled">
-                  <a className="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              )}
-            </ul>
-          </nav>
-          {/* end pagination */}
+
+          <Pagination
+            previous={props.quotes.previous}
+            next={props.quotes.next}
+            page={props.page}
+            numPages={numPages}
+          />
         </div>
       </div>
     </Layout>
