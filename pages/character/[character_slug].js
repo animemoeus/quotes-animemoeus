@@ -2,10 +2,10 @@ import Error from "next/error";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Navbar } from "../components/molecules";
-import { Layout } from "../components/templates/";
+import { Navbar } from "../../components/molecules";
+import { Layout } from "../../components/templates/";
 
-export default function Home(props) {
+export default function Character(props) {
   const [numPages, setNumPages] = useState(
     props.quotes.count % 15 > 0
       ? parseInt(props.quotes.count / 15) + 1
@@ -47,11 +47,15 @@ export default function Home(props) {
             );
           })}
           {/* pagination */}
-          <nav className="mt-3">
+          <nav className="mt-3 shadow-sm">
             <ul className="pagination justify-content-center">
               {props.quotes.previous !== null && (
                 <li className="page-item">
-                  <Link href={`/?page=${parseInt(props.page) - 1}`}>
+                  <Link
+                    href={`/character/${props.slug}?page=${
+                      parseInt(props.page) - 1
+                    }`}
+                  >
                     <a className="page-link" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
@@ -72,7 +76,11 @@ export default function Home(props) {
               </li>
               {props.quotes.next !== null && (
                 <li className="page-item">
-                  <Link href={`/?page=${parseInt(props.page) + 1}`}>
+                  <Link
+                    href={`/character/${props.slug}?page=${
+                      parseInt(props.page) + 1
+                    }`}
+                  >
                     <a className="page-link" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                     </a>
@@ -98,9 +106,18 @@ export default function Home(props) {
 export async function getServerSideProps(props) {
   const page = props.query.page === undefined ? 1 : props.query.page;
 
-  const res = await fetch(`http://api.localhost:8000/quotes/?page=${page}`);
+  const res = await fetch(
+    `http://api.localhost:8000/quotes/character/${props.query.character_slug}/?page=${page}`
+  );
 
   const data = await res.json();
 
-  return { props: { quotes: data, page: page, status: res.status } };
+  return {
+    props: {
+      quotes: data,
+      page: page,
+      slug: props.query.character_slug,
+      status: res.status,
+    },
+  };
 }
