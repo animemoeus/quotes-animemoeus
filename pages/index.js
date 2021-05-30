@@ -2,7 +2,7 @@ import Error from "next/error";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Navbar } from "../components/molecules";
+import { Card, Navbar } from "../components/molecules";
 import { Layout } from "../components/templates/";
 
 export default function Home(props) {
@@ -24,26 +24,14 @@ export default function Home(props) {
         <div className="container-fluid p-0">
           {props.quotes.results.map((quote, index) => {
             return (
-              <div className="card text-center mb-2 shadow-sm" key={index}>
-                <div className="card-body">
-                  <blockquote className="blockquote mb-0">
-                    <p>{quote.quote}</p>
-                    <footer className="blockquote-footer">
-                      <Link href={`/character/${quote.character_slug}/`}>
-                        <a className="text-decoration-none text-muted">
-                          {quote.character}
-                        </a>
-                      </Link>
-                      {", "}
-                      <Link href={`/anime/${quote.anime_slug}/`}>
-                        <a className="text-decoration-none text-muted">
-                          <cite title={quote.anime}>{quote.anime}</cite>
-                        </a>
-                      </Link>
-                    </footer>
-                  </blockquote>
-                </div>
-              </div>
+              <Card
+                key={index}
+                quote={quote.quote}
+                character={quote.character}
+                character_slug={quote.character_slug}
+                anime={quote.anime}
+                anime_slug={quote.anime_slug}
+              />
             );
           })}
           {/* pagination */}
