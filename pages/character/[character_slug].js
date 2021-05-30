@@ -17,7 +17,7 @@ export default function Character(props) {
   );
 
   return (
-    <Layout title="Quotes | AnimeMoeUs">
+    <Layout title={`${props.quotes.results[0].character} Quotes | AnimeMoeUs`}>
       <Navbar />
 
       <div className="container-md mt-3 p-1">
